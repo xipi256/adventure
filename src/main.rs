@@ -50,15 +50,37 @@ impl ggez::event::EventHandler for State {
     }
 
     fn key_down_event(&mut self, ctx: &mut Context, keycode: Keycode, _keymod: Mod, _repeat: bool) {
-        let change_amount = 10.0;       
+        let change_amount = 12.0;       
 
         match keycode {
-            Keycode::Up => { self.change_pos(0.0, -change_amount); },
-            Keycode::Down => { self.change_pos(0.0, change_amount); },
-            Keycode::Left => { self.change_pos(-change_amount, 0.0); },
-            Keycode::Right => { self.change_pos(change_amount, 0.0); },
-            Keycode::Escape => { ctx.quit().expect("Should quit"); }
-            _ => { println!("{:?}", keycode); }
+            Keycode::K | Keycode::Up   | Keycode::Kp8 => { 
+                self.change_pos(0.0, -change_amount)
+            }
+            Keycode::J | Keycode::Down | Keycode::Kp2 => { 
+                self.change_pos(0.0, change_amount)
+            }
+            Keycode::H | Keycode::Left | Keycode::Kp4 => { 
+                self.change_pos(-change_amount, 0.0)
+            }
+            Keycode::L | Keycode::Right | Keycode::Kp6 => { 
+                self.change_pos(change_amount, 0.0)
+            }
+            Keycode::Y | Keycode::Kp7 => {
+                self.change_pos(-change_amount, -change_amount)
+            }
+            Keycode::U | Keycode::Kp9 => {
+                self.change_pos(change_amount, -change_amount)
+            }
+            Keycode::B | Keycode::Kp1 => {
+                self.change_pos(-change_amount, change_amount)
+            }
+            Keycode::N | Keycode::Kp3 => {
+                self.change_pos(change_amount, change_amount)
+            }
+            Keycode::Escape => { 
+                ctx.quit().expect("Should quit")
+            }
+            _ => { println!("{:?}", keycode) }
         };
     }
 }
