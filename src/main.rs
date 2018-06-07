@@ -1,5 +1,4 @@
 extern crate ggez;
-extern crate nalgebra;
 
 use ggez::{
     Context, ContextBuilder, graphics, event, GameResult, conf,
@@ -65,7 +64,6 @@ impl ggez::event::EventHandler for State {
 }
 
 fn main() { 
-
     let fullscreen_type = if cfg!(windows) {
         conf::FullscreenType::Off
     } else {
