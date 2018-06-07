@@ -22,13 +22,19 @@ fn main() {
     let state = &mut State {
         
     };
+
+    let fullscreen_type = if cfg!(windows) {
+        conf::FullscreenType::Off
+    } else {
+        conf::FullscreenType::Desktop
+    };
     
     let ctx = &mut ContextBuilder::new("adventure", "quantumtrip")
         .window_setup(conf::WindowSetup::default().title("Trit's Adventure"))
         .window_mode(conf::WindowMode::default()
             .dimensions(1920,1080)
             .borderless(true)
-            .fullscreen_type(conf::FullscreenType::Desktop))
+            .fullscreen_type(fullscreen_type))
         .build().unwrap();
 
     mouse::set_grabbed(ctx, true);
