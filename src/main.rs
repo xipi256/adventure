@@ -27,7 +27,8 @@ fn main() {
         .window_setup(conf::WindowSetup::default().title("Trit's Adventure"))
         .window_mode(conf::WindowMode::default()
             .dimensions(1920,1080)
-            .borderless(true))
+            .borderless(true)
+            .fullscreen_type(conf::FullscreenType::Desktop))
         .build().unwrap();
 
     mouse::set_grabbed(ctx, true);
