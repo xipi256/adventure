@@ -35,7 +35,7 @@ impl State {
 }
 
 impl ggez::event::EventHandler for State {
-    fn update(&mut self, ctx: &mut Context) -> GameResult<()> {        
+    fn update(&mut self, _ctx: &mut Context) -> GameResult<()> {        
         Ok(())
     }
 
@@ -53,7 +53,7 @@ impl ggez::event::EventHandler for State {
         let change_amount = 12.0;       
 
         match keycode {
-            Keycode::K | Keycode::Up   | Keycode::Kp8 => { 
+            Keycode::K | Keycode::Up | Keycode::Kp8 => { 
                 self.change_pos(0.0, -change_amount)
             }
             Keycode::J | Keycode::Down | Keycode::Kp2 => { 
@@ -102,7 +102,6 @@ fn main() {
     let mut resource_dir = path::PathBuf::from(env::current_dir().unwrap());
     resource_dir.push("resources");
     cb = cb.add_resource_path(resource_dir);
-
 
     let ctx = &mut cb.build().unwrap();
     mouse::set_grabbed(ctx, false);
