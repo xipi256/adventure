@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["trit <trit@quantumtrip.org>"]
 
 [dependencies]
-ggez = "0.4.2"
+ggez = { git = "https://github.com/ggez/ggez", branch = "devel" }
