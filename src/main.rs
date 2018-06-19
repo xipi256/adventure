@@ -5,10 +5,12 @@ use ggez::{
     mouse
 };
 use ggez::event::{KeyCode, KeyMods};
-//use ggez::graphics::{Point2};
+use ggez::nalgebra as na;
 use std::{path, env};
 
-struct State {}
+struct State {
+    
+}
 
 impl State {
     fn new(ctx: &mut Context) -> GameResult<State> {
@@ -19,24 +21,24 @@ impl State {
 struct Hero {
     font: graphics::Font,
     text: graphics::Text,
-    //pos: ggez::graphics::Point2
+    pos: na::Point2<f32>
 }
 
 impl Hero {
-    fn _new(ctx: &mut Context) -> GameResult<Hero> {
+    fn new(ctx: &mut Context) -> GameResult<Hero> {
         let font = graphics::Font::new(ctx, "/Envy Code R.ttf", 14)?;
         let text = graphics::Text::new(ctx, "@", &font)?;
 
         let h = Hero {
             font: font, 
             text: text, 
-            //pos: Point2::new(100.0, 100.0)
+            pos: na::Point2::new(100.0, 100.0)
         };
 
         Ok(h)
     }
 
-    fn _change_pos(&mut self, d_x: f32, d_y: f32) {
+    fn change_pos(&mut self, d_x: f32, d_y: f32) {
         // self.pos.coords.x += d_x;
         // self.pos.coords.y += d_y;
     }
@@ -49,7 +51,7 @@ impl ggez::event::EventHandler for State {
 
     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
         graphics::clear(ctx, ggez::graphics::Color { r: 0.0, g: 0.0, b: 0.0, a: 0.0 });  
-
+        
         graphics::present(ctx);
 
         Ok(())
