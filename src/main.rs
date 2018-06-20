@@ -3,13 +3,31 @@ extern crate ggez;
 use ggez::{conf, Context, ContextBuilder, event, GameResult, graphics};
 use ggez::event::{KeyCode, KeyMods};
 
-struct MainState {}
+
+struct MainState {
+    hero: Hero
+}
 
 impl MainState {
-    fn new(_ctx: &mut Context) -> GameResult<MainState> {
+    fn new(ctx: &mut Context) -> GameResult<MainState> {
         Ok(MainState{
-
+            hero: Hero::new(ctx)?
         })
+    }
+}
+
+struct Hero {
+    rect: graphics::Rect
+}
+impl Hero {
+    fn new(_ctx: &mut Context) -> GameResult<Hero> {
+        Ok(Hero {
+            rect: graphics::Rect::new(100.0, 100.0, 10.0, 10.0)
+        })
+    }
+
+    fn draw(&self, ctx: &mut Context) -> GameResult {
+        graphics::rectangle(ctx, [1.0, 0.55, 0.0, 1.0].into(), graphics::DrawMode::Fill, *&self.rect)
     }
 }
 
@@ -20,6 +38,7 @@ impl ggez::event::EventHandler for MainState {
 
     fn draw(&mut self, ctx: &mut Context) -> GameResult {
         graphics::clear(ctx, [0.0, 0.0, 0.0, 0.0].into());
+        &self.hero.draw(ctx)?;
         graphics::present(ctx)
     }
 
